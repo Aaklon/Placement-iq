@@ -1,17 +1,43 @@
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+const GEMINI_API_KEYS = [
+  process.env.GEMINI_API_KEY,
+  ...(process.env.GEMINI_API_KEYS ? process.env.GEMINI_API_KEYS.split(',') : []),
+].filter(Boolean);
 
-export const geminiModel = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash"
-})
-const model = genAI.getGenerativeModel({ 
-  model: "gemini-2.0-flash",
-  generationConfig: {
-    responseMimeType: "application/json",
-    maxOutputTokens: 800,
+/**
+ * Gets a fresh Gemini model instance with a rotated API key.
+ * Uses random selection for balanced distribution in serverless environments.
+ */
+export function getGeminiModel(config = {}) {
+  if (GEMINI_API_KEYS.length === 0) {
+    throw new Error("Missing GEMINI_API_KEY/GEMINI_API_KEYS in environment");
   }
-});
+
+  const randomIndex = Math.floor(Math.random() * GEMINI_API_KEYS.length);
+  const selectedKey = GEMINI_API_KEYS[randomIndex];
+  
+  // Debug log (masked key)
+  console.log(`[Gemini] Using key rotation index: ${randomIndex} (ending in ${selectedKey.slice(-4)})`);
+
+  const genAI = new GoogleGenerativeAI(selectedKey);
+  return genAI.getGenerativeModel({
+    model: "gemini-2.5-flash", // Using 1.5-flash as per AGENTS.md rule 16 (Gemini 2.5/1.5 Flash API)
+    ...config
+  });
+}
+
+/**
+ * Proxy object for geminiModel to maintain backward compatibility 
+ * while enabling per-call API key rotation.
+ */
+export const geminiModel = {
+  generateContent: async (content) => {
+    const model = getGeminiModel();
+    return model.generateContent(content);
+  }
+};
+
 // Safely parse JSON from Gemini response
 export function safeParseJSON(text) {
   try {

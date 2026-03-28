@@ -1,0 +1,44 @@
+# 1. Automatic Text Detection
+# ---------------------------
+# Handle line endings automatically for files detected as text 
+# and leave binary files (images, PDFs) alone.
+* text=auto
+
+# 2. Force Linux-style (LF) for Code & Config
+# -------------------------------------------
+# These files MUST use LF to prevent "Ghost Changes" in Git 
+# and to ensure scripts run correctly on Linux/Vercel.
+*.js      text eol=lf
+*.jsx     text eol=lf
+*.ts      text eol=lf
+*.tsx     text eol=lf
+*.json    text eol=lf
+*.css     text eol=lf
+*.scss    text eol=lf
+*.html    text eol=lf
+*.md      text eol=lf
+*.svg     text eol=lf
+
+# 3. IDE & Environment Protection
+# -------------------------------
+# Essential for your Antigravity scripts and Supabase keys.
+.env*                text eol=lf
+.gitignore           text eol=lf
+.gitattributes       text eol=lf
+.editorconfig        text eol=lf
+
+# Antigravity / VS Code workspace settings
+.vscode/*.json       text eol=lf
+.antigravity/*.json  text eol=lf
+*.code-snippets      text eol=lf
+
+# 4. Binary Files
+# ---------------
+# Ensure Git doesn't try to "fix" line endings in images or fonts.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary

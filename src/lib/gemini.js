@@ -22,7 +22,7 @@ export function getGeminiModel(config = {}) {
 
   const genAI = new GoogleGenerativeAI(selectedKey);
   return genAI.getGenerativeModel({
-    model: "gemini-1.5-flash-8b",
+    model: "gemini-1.5-flash",
     generationConfig: {
       maxOutputTokens: 500, // reduce from 800
       temperature: 0.3,     // lower = faster + cheaper

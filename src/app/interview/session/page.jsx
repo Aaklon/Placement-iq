@@ -10,16 +10,19 @@ export default function InterviewSessionPage() {
   const [meta, setMeta] = useState(null)
 
   useEffect(() => {
+    // Check localStorage only on client
     const savedMeta = localStorage.getItem('interviewMeta')
     if (!savedMeta) {
       router.push('/interview')
       return
     }
+    
+    // Defer update to avoid "cascading renders" warning on mount
     const timer = setTimeout(() => {
       setMeta(JSON.parse(savedMeta))
     }, 0)
     return () => clearTimeout(timer)
-  }, [router, setMeta])
+  }, [router])
 
   const handleInterviewEnd = (transcript) => {
     localStorage.setItem('interviewTranscript', JSON.stringify(transcript))

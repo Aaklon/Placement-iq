@@ -22,7 +22,7 @@ export function getGeminiModel(config = {}) {
 
   const genAI = new GoogleGenerativeAI(selectedKey);
   return genAI.getGenerativeModel({
-    model: "gemini-2.5-flash", // Using 1.5-flash as per AGENTS.md rule 16 (Gemini 2.5/1.5 Flash API)
+    model: "gemini-2.0-flash", // Using 1.5-flash as per AGENTS.md rule 16 (Gemini 2.5/1.5 Flash API)
     ...config
   });
 }

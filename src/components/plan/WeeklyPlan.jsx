@@ -16,7 +16,7 @@ export default function WeeklyPlan({ plan }) {
         <h2 className="text-lg md:text-xl font-medium text-gray-100 mb-1">
           {totalHours} hours to reach {targetCompany}
         </h2>
-        <p className="text-sm text-gray-400">Your personalized 4-week roadmap</p>
+        <p className="text-sm text-gray-400">Your personalized roadmap</p>
       </div>
 
       {/* Week Tabs */}
@@ -64,14 +64,14 @@ export default function WeeklyPlan({ plan }) {
                 className="bg-gray-900 border border-gray-800 rounded-xl p-4 flex flex-col md:flex-row md:items-center gap-3"
               >
                 <div className="text-xs font-medium text-gray-500 min-w-[80px]">
-                  {task.dayRange}
+                  {task.days}
                 </div>
                 <div className="flex-1 text-sm text-gray-300">
-                  {task.taskText}
+                  {task.task}
                 </div>
-                {task.resourceLink && (
+                {task.resource && (
                   <a
-                    href={task.resourceLink}
+                    href={task.resource}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-[#006633] hover:underline whitespace-nowrap"

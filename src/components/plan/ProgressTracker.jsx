@@ -4,21 +4,31 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 export default function ProgressTracker({ tasks = [], planId }) {
-  const [checkedItems, setCheckedItems] = useState({})
   const storageKey = `placementiq_${planId}`
+  
+  const [checkedItems, setCheckedItems] = useState(() => {
+    // SSR Check
+    if (typeof window === 'undefined' || !planId) return {}
+    
+    try {
+      const saved = localStorage.getItem(storageKey)
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        return (parsed && typeof parsed === 'object') ? parsed : {}
+      }
+    } catch (e) {
+      console.error('Failed to parse initial progress', e)
+    }
+    return {}
+  })
 
-  // Load from local storage
+  // Save to local storage whenever checkedItems changes
   useEffect(() => {
     if (!planId) return
-    const saved = localStorage.getItem(storageKey)
-    if (saved) {
-      try {
-        setCheckedItems(JSON.parse(saved))
-      } catch (e) {
-        console.error('Failed to parse progress', e)
-      }
-    }
-  }, [planId, storageKey])
+    localStorage.setItem(storageKey, JSON.stringify(checkedItems))
+  }, [checkedItems, storageKey, planId])
+
+
 
   // Save to local storage
   const handleToggle = (taskId) => {
@@ -36,10 +46,6 @@ export default function ProgressTracker({ tasks = [], planId }) {
   const totalCount = tasks.length
   const progressPercent = totalCount > 0 ? (checkedCount / totalCount) * 100 : 0
   
-  // Assuming each task is roughly equal weight for hours if not specified
-  // Or if we have hours, we can sum them up. 
-  // For now, let's stick to count as per the instructions "X of Y hours" 
-  // but if the data doesn't have hours, I'll just show "X of Y tasks" or assume 1 hr per task.
   const totalHours = tasks.reduce((acc, t) => acc + (t.hours || 1), 0)
   const completedHours = tasks.reduce((acc, t, i) => acc + (checkedItems[i] ? (t.hours || 1) : 0), 0)
 
@@ -82,7 +88,8 @@ export default function ProgressTracker({ tasks = [], planId }) {
                 checkedItems[index] ? 'text-gray-500 line-through' : 'text-gray-300'
               }`}
             >
-              {task.taskText || task.name || task}
+              {/* FIXED: Targeting specific text strings to prevent rendering the whole object */}
+              {task.task || task.name || 'Unnamed Task'}
             </span>
           </div>
         ))}

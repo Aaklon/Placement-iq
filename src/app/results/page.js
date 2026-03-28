@@ -99,6 +99,7 @@ export default function ResultsPage() {
           <div>
             <h2 className="text-lg md:text-xl font-bold mb-8">Daily Progress Tracker</h2>
             <ProgressTracker 
+              key={`${profile.name}_${studyPlan.targetCompany}`}
               tasks={studyPlan.weeks.flatMap(w => w.tasks)} 
               planId={`${profile.name}_${studyPlan.targetCompany}`}
             />

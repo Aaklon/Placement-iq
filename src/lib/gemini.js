@@ -3,13 +3,13 @@ import { GoogleGenerativeAI } from "@google/generative-ai"
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 
 export const geminiModel = genAI.getGenerativeModel({
-  model: "gemini-2.5-flash"
+  model: "gemini-2.0-flash"
 })
 const model = genAI.getGenerativeModel({ 
-  model: "gemini-1.5-flash",
+  model: "gemini-2.0-flash",
   generationConfig: {
     responseMimeType: "application/json",
-    maxOutputTokens: 800, // This forces pure JSON output instantly
+    maxOutputTokens: 800,
   }
 });
 // Safely parse JSON from Gemini response

@@ -45,7 +45,7 @@ export default function HomePage() {
   const steps = [
     { title: "Upload", description: "Upload your LinkedIn PDF or Resume in seconds." },
     { title: "AI Analyzes", description: "Our AI compares your skills against 53 top companies." },
-    { title: "Get Roadmap", description: "Receive a personalized 4-week study plan to bridge gaps." }
+    { title: "Get Roadmap", description: "Receive a personalized 2-week study plan to bridge gaps." }
   ];
 
   const features = [

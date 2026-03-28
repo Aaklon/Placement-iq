@@ -41,7 +41,7 @@ export default function ReportCard({ feedback }) {
         </div>
         <motion.div
           animate={{ rotate: isExpanded ? 180 : 0 }}
-          className="text-gray-500 flex-shrink-0"
+          className="text-gray-500 shrink-0"
         >
           <ChevronDown size={20} />
         </motion.div>

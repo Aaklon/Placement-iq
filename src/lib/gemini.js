@@ -24,8 +24,8 @@ export function getGeminiModel(config = {}) {
   return genAI.getGenerativeModel({
     model: "gemini-2.0-flash-lite",
     generationConfig: {
-      maxOutputTokens: 500, // reduce from 800
-      temperature: 0.3,     // lower = faster + cheaper
+      maxOutputTokens: 200, // reduce from 800
+      temperature: 0.1,     // lower = faster + cheaper
     },  // 1000 RPD free vs ~50 for 2.0, // Using 1.5-flash as per AGENTS.md rule 16 (Gemini 2.5/1.5 Flash API)
     ...config
   });

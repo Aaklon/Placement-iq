@@ -226,13 +226,15 @@ export function getGeminiModel() {
 
 export function safeParseJSON(text) {
   try {
-    const clean = text
-      .replace(/```json/g, "")
-      .replace(/```/g, "")
-      .trim();
+    // Find JSON object between first { and last }
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    if (start === -1 || end === -1) return null;
+    const clean = text.slice(start, end + 1);
     return JSON.parse(clean);
   } catch (err) {
     console.error("JSON parse failed:", err);
+    console.error("Raw text was:", text?.slice(0, 200));
     return null;
   }
 }
@@ -251,11 +253,33 @@ export async function parseProfileFromPDF(base64PDF) {
 }
 
 export async function analyzeProfile(studentProfile, companies) {
+  // Send only essential fields to save tokens
+  const slimCompanies = companies.map(c => ({
+    name: c.name,
+    role: c.role,
+    difficulty: c.difficulty,
+    minCGPA: c.minCGPA,
+    avgPackage: c.avgPackage,
+    requiredSkills: c.requiredSkills,
+    rounds: c.rounds,
+    topperTip: c.topperTip
+  }));
+
+  // Deduplicate by name+role
+  const seen = new Set();
+  const uniqueCompanies = slimCompanies.filter(c => {
+    const key = `${c.name}-${c.role}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
   const text = await generate(`
+    IMPORTANT: Respond with ONLY a JSON object. No explanation, no markdown.
     You are a placement advisor for NIT Jalandhar.
     Student: ${JSON.stringify(studentProfile)}
-    Companies: ${JSON.stringify(companies)}
-    Return ONLY JSON, max 3 ready, 2 stretch companies:
+    Companies: ${JSON.stringify(uniqueCompanies)}
+    Return ONLY JSON, max 3 ready, 2 stretch, 2 future:
     {"ready":[{"name":"","role":"","avgPackage":"","rounds":[],"topperTip":""}],
     "stretch":[{"name":"","role":"","avgPackage":"","missingSkills":[],"gapSize":"","topperTip":""}],
     "future":[{"name":"","role":"","avgPackage":"","missingSkills":[]}],

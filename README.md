@@ -307,7 +307,7 @@ MIT License — free to use, modify, and distribute.
 
 ## Built By
 
-Team **ElevateX** at HackMol 7.0 · NIT Jalandhar · March 2026
+Team **ElevateX** at HackMol 7.0 · NIT Jalandhar, March 2026
 
 ---
 

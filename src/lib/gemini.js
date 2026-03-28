@@ -8,7 +8,8 @@ export const geminiModel = genAI.getGenerativeModel({
 const model = genAI.getGenerativeModel({ 
   model: "gemini-1.5-flash",
   generationConfig: {
-    responseMimeType: "application/json", // This forces pure JSON output instantly
+    responseMimeType: "application/json",
+    maxOutputTokens: 800, // This forces pure JSON output instantly
   }
 });
 // Safely parse JSON from Gemini response

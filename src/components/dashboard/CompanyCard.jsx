@@ -80,11 +80,13 @@ export default function CompanyCard({ company, type = 'ready' }) {
 
       {/* Missing Skills (for Stretch) */}
       {type === 'stretch' && company.missingSkills && company.missingSkills.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-1.5">
+        <ul className="mt-4">
           {company.missingSkills.map((skill, idx) => (
-            <SkillBadge key={idx} skill={skill} type="missing" />
+            <li key={idx} className="text-sm text-gray-700 underline list-disc ml-4">
+              {skill}
+            </li>
           ))}
-        </div>
+        </ul>
       )}
 
       {/* Expandable Topper Tip */}
@@ -110,7 +112,7 @@ export default function CompanyCard({ company, type = 'ready' }) {
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="mt-3 bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-gray-900 leading-relaxed"
+                className="mt-3 bg-amber-50 border border-amber-300 rounded-lg p-3 text-sm text-black leading-relaxed"
               >
                 <div className="flex items-start gap-2">
                   <span className="text-amber-500 font-bold">•</span>

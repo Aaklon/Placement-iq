@@ -80,6 +80,16 @@ export default function HomePage() {
             <div className={`absolute top-1/3 right-1/2 w-[100px] h-[100px] bg-purple-900/20 rounded-full blur-3xl animate-float`} style={{ animationDuration: '12s', animationDelay: '2s' }}></div>
             <div className={`absolute bottom-1/3 left-1/3 w-[80px] h-[80px] bg-green-900/20 rounded-full blur-3xl animate-float`} style={{ animationDuration: '9s', animationDelay: '1.5s' }}></div>
             <div className={`absolute top-3/4 right-1/3 w-[60px] h-[60px] bg-blue-900/20 rounded-full blur-3xl animate-float`} style={{ animationDuration: '11s', animationDelay: '0.2s' }}></div>
+            
+            <div className="absolute w-1.5 h-1.5 bg-green-400/60 rounded-full animate-float" style={{top:'15%', left:'20%', animationDuration:'7s'}} />
+            <div className="absolute w-1 h-1 bg-purple-400/50 rounded-full animate-float" style={{top:'25%', right:'25%', animationDuration:'9s', animationDelay:'1s'}} />
+            <div className="absolute w-2 h-2 bg-green-500/40 rounded-full animate-float" style={{top:'45%', left:'8%', animationDuration:'11s', animationDelay:'2s'}} />
+            <div className="absolute w-1.5 h-1.5 bg-blue-400/40 rounded-full animate-float" style={{top:'60%', right:'10%', animationDuration:'8s', animationDelay:'0.5s'}} />
+            <div className="absolute w-1 h-1 bg-purple-300/50 rounded-full animate-float" style={{top:'70%', left:'30%', animationDuration:'13s', animationDelay:'3s'}} />
+            <div className="absolute w-2 h-2 bg-green-400/30 rounded-full animate-float" style={{top:'35%', right:'40%', animationDuration:'10s', animationDelay:'1.5s'}} />
+            <div className="absolute w-1 h-1 bg-blue-300/40 rounded-full animate-float" style={{top:'80%', right:'35%', animationDuration:'6s', animationDelay:'2.5s'}} />
+            <div className="absolute w-1.5 h-1.5 bg-purple-500/40 rounded-full animate-float" style={{top:'12%', left:'60%', animationDuration:'12s', animationDelay:'0.8s'}} />
+            <div className="absolute w-1 h-1 bg-green-300/50 rounded-full animate-float" style={{top:'50%', left:'50%', animationDuration:'9s', animationDelay:'4s'}} />
           </div>
 
           <div className="animate-fadeInUp" style={{ animationDelay: '0s' }}>

@@ -40,7 +40,9 @@ export default function HomePage() {
   const uniqueCompanies = Array.from(new Set(companies.map(c => c.name)))
     .map(name => companies.find(c => c.name === name));
   
-  const displayedCompanies = showAllCompanies ? uniqueCompanies : uniqueCompanies.slice(0, 24);
+  const marqueeCompanies = ['Microsoft', 'Google', 'Amazon', 'Flipkart', 'Infosys']
+    .map(name => uniqueCompanies.find(c => c.name === name))
+    .filter(Boolean);
 
   const steps = [
     { title: "Upload", description: "Upload your LinkedIn PDF or Resume in seconds." },
@@ -94,11 +96,11 @@ export default function HomePage() {
 
           <div className="animate-fadeInUp" style={{ animationDelay: '0s' }}>
             <div className="inline-block bg-purple-900/40 text-purple-300 rounded-full px-4 py-1.5 text-xs font-medium border border-purple-800/50 mb-8 animate-pulse">
-              Built for NIT Jalandhar · HackMol 7.0
+              Built for NIT Jalandhar
             </div>
             <h1 className="text-4xl md:text-6xl font-semibold mb-6 leading-tight tracking-tight">
               Know if you&apos;re ready for <br />
-              <span className="text-brand-green relative inline-block" style={{ filter: 'drop-shadow(0 0 8px rgba(0, 102, 51, 0.4))' }}>
+              <span className="text-brand-green relative inline-block" >
                 campus placements
               </span>
             </h1>
@@ -185,55 +187,44 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Improved Companies Section */}
-        <section className="px-4 py-24 md:py-32 bg-gray-900/30 relative">
+        {/* Simplified Companies Marquee Section */}
+        <section className="px-4 py-24 md:py-32 bg-gray-900/30 relative overflow-hidden">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Targeting 53 Companies</h2>
-              <p className="text-gray-500 text-sm mb-10 max-w-sm mx-auto leading-relaxed">From service giants to premium product firms visiting NITJ campus</p>
-              
-              <div className="flex flex-wrap justify-center gap-6 mb-12 text-[10px] md:text-xs font-bold uppercase tracking-widest">
-                <div className="flex items-center gap-2.5 bg-red-950/30 px-3 py-1.5 rounded-full border border-red-900/30">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></div>
-                  <span className="text-red-400">Hard Category</span>
-                </div>
-                <div className="flex items-center gap-2.5 bg-amber-950/30 px-3 py-1.5 rounded-full border border-amber-900/30">
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
-                  <span className="text-amber-400">Medium Category</span>
-                </div>
-                <div className="flex items-center gap-2.5 bg-green-950/30 px-3 py-1.5 rounded-full border border-green-900/30">
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-                  <span className="text-green-400">Easy Category</span>
-                </div>
-              </div>
+              <p className="text-gray-400 text-sm max-w-sm mx-auto leading-relaxed">Top recruiters visiting NIT Jalandhar campus every year</p>
             </div>
 
-            <div className="relative max-w-5xl mx-auto overflow-hidden">
-              <div className="flex flex-wrap gap-2.5 md:gap-3 justify-center transition-all duration-700">
-                {displayedCompanies.map((company, idx) => (
-                  <div
-                    key={company.name}
-                    className={`px-5 py-2.5 rounded-full text-xs md:text-sm font-bold border transition-custom hover:scale-105 cursor-default ${difficultyColors[company.difficulty]} animate-fadeInUp`}
-                    style={{ animationDelay: `${idx * 0.03}s` }}
+            <div style={{ overflow: 'hidden' }} className="relative">
+              {/* Fade edges */}
+              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-950/50 to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-950/50 to-transparent z-10 pointer-events-none"></div>
+              
+              <div className="flex animate-marquee gap-4 w-max py-4">
+                {/* Duplicate for seamless loop */}
+                {[...marqueeCompanies, ...marqueeCompanies].map((c, i) => (
+                  <div 
+                    key={i} 
+                    className={`flex items-center gap-3 px-6 py-3 rounded-full bg-gray-900/50 backdrop-blur-sm border border-gray-800 transition-custom hover:border-gray-600 hover:scale-105 cursor-default ${difficultyColors[c.difficulty].split(' ').filter(cls => !cls.includes('bg-')).join(' ')}`}
                   >
-                    {company.name}
+                    <span className="font-bold whitespace-nowrap">{c.name}</span>
+                    <div className={`w-2 h-2 rounded-full ${c.difficulty === 'hard' ? 'bg-red-500' : c.difficulty === 'medium' ? 'bg-amber-500' : 'bg-green-500'}`}></div>
                   </div>
                 ))}
               </div>
-              
-              {!showAllCompanies && uniqueCompanies.length > 24 && (
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-950 via-transparent to-transparent pointer-events-none"></div>
-              )}
             </div>
 
-            <div className="mt-16 text-center">
-              <button
-                onClick={() => setShowAllCompanies(!showAllCompanies)}
-                className="px-10 py-4 bg-gray-900/60 hover:bg-gray-800 text-gray-400 text-sm font-bold rounded-full border border-gray-800 transition-custom hover:text-white hover:border-gray-500 active:scale-95"
+            <p className="text-sm text-gray-500 text-center mt-12 mb-6">
+              ...and 48 more companies
+            </p>
+
+            <div className="text-center">
+              <Link
+                href="/login"
+                className="px-8 py-3 bg-gray-900/60 hover:bg-gray-800 text-gray-400 text-sm font-bold rounded-full border border-gray-800 transition-custom hover:text-white hover:border-gray-500 active:scale-95 inline-flex items-center gap-2"
               >
-                {showAllCompanies ? 'Show less recruiters' : `Show all ${uniqueCompanies.length} recruiters`}
-              </button>
-            </div>
+                View all 53 recruiters →
+              </Link>            </div>
           </div>
         </section>
 

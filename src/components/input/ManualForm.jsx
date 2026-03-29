@@ -89,16 +89,6 @@ export default function ManualForm({ onProfileReady }) {
             </select>
           </div>
 
-          <div className="space-y-1">
-            <label className="text-xs text-gray-500 uppercase">Number of Projects</label>
-            <input
-              type="number"
-              min="0"
-              value={formData.projects}
-              onChange={(e) => setFormData({ ...formData, projects: e.target.value })}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 outline-none transition-all"
-            />
-          </div>
         </div>
 
         <div className="pt-2">

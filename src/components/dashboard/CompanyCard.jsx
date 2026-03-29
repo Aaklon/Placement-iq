@@ -110,7 +110,7 @@ export default function CompanyCard({ company, type = 'ready' }) {
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="mt-3 bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-gray-700 leading-relaxed"
+                className="mt-3 bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-gray-900 leading-relaxed"
               >
                 <div className="flex items-start gap-2">
                   <span className="text-amber-500 font-bold">•</span>

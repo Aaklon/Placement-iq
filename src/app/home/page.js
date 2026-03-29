@@ -225,7 +225,7 @@ export default function HomePage() {
         <section className="px-4 py-32 bg-gradient-to-b from-gray-950 to-gray-900 flex flex-col items-center">
           <div className="max-w-2xl text-center">
             <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Ready to find out where you stand?</h2>
-            <p className="text-gray-400 text-lg mb-12 max-w-md mx-auto leading-relaxed">Free for all NIT Jalandhar students during HackMol 7.0. Analyze your profile in under 60 seconds.</p>
+            <p className="text-gray-400 text-lg mb-12 max-w-md mx-auto leading-relaxed">Free for all NIT Jalandhar students. Analyze your profile in under 60 seconds.</p>
             <Link
               href="/login"
               className="group relative inline-flex items-center justify-center px-16 py-6 bg-brand-green hover:bg-brand-green-hover text-white rounded-2xl text-2xl font-black transition-custom transform hover:scale-105 shadow-2xl shadow-brand-green/30"
@@ -233,7 +233,6 @@ export default function HomePage() {
               <span className="relative z-10">Get Started Now</span>
               <div className="absolute inset-0 bg-white/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 rounded-2xl"></div>
             </Link>
-            <p className="mt-8 text-sm text-gray-500 font-medium">✨ No sensitive college credentials required</p>
           </div>
         </section>
       </main>
@@ -247,15 +246,8 @@ export default function HomePage() {
             </span>
             <p className="text-gray-500 text-xs md:text-sm max-w-xs">AI-powered placement intelligence platform built specifically for N.I.T. Jalandhar students.</p>
           </div>
-          
-          <div className="flex justify-center gap-8">
-            <a href="#" className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all">𝕏</a>
-            <a href="#" className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all">GH</a>
-            <a href="#" className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-all">IN</a>
-          </div>
 
           <div className="flex flex-col gap-2 items-center md:items-end">
-            <p className="text-sm font-bold text-white tracking-wide">Made with ❤️ at HackMol 7.0</p>
             <p className="text-xs text-gray-600 uppercase tracking-widest font-bold">© 2026 NIT Jalandhar</p>
           </div>
         </div>

@@ -299,6 +299,11 @@ Each company includes minimum CGPA, required skills, interview rounds, average p
 
 ---
 
+##Final changes done
+Used Grok ai for gap-analysis for companies
+Used Gemini for pdf parsing
+Used ElevenLabs for interview questions generation
+
 ## License
 
 MIT License — free to use, modify, and distribute.

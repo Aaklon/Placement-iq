@@ -1,17 +1,54 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #030712; /* gray-950 */
-  --color-foreground: #f9fafb; /* gray-50 */
-  --color-brand-green: #006633;
-  --color-brand-green-hover: #008040;
-  --color-card-bg: #111827; /* gray-900 */
+  --color-background: #EBE5D9; /* warm beige */
+  --color-foreground: #1D1C19; /* soft dark */
+  --color-brand-green: #3ADF76; /* vibrant soft green */
+  --color-brand-green-hover: #32c668;
+  --color-card-bg: #F5EFEB; /* lighter beige for cards */
+  
+  /* Override standard Tailwind colors used in the app to match the light theme */
+  --color-gray-950: #EBE5D9;
+  --color-gray-900: #F5EFEB;
+  --color-gray-800: #E3DCD1;
+  --color-gray-700: #D0C9BA;
+  --color-gray-600: #B7AF9F;
+  --color-gray-500: #7A7569;
+  --color-gray-400: #514E45;
+  --color-gray-300: #3C3A33;
+  --color-gray-200: #292723;
+  --color-gray-100: #1D1C19;
+  --color-gray-50:  #151412;
+  --color-white: #1D1C19;
+
+  /* Map purple to earthly accent tones */
+  --color-purple-950: #E3DCD1;
+  --color-purple-900: #D0C9BA;
+  --color-purple-800: #B7AF9F;
+  --color-purple-700: #9C9585;
+  --color-purple-600: #7A7569;
+  --color-purple-500: #514E45;
+  --color-purple-400: #3C3A33;
+  --color-purple-300: #292723;
+  --color-purple-200: #1D1C19;
+
+  /* Map green to soft pastel greens */
+  --color-green-950: #e2f5ec;
+  --color-green-900: #c2eed5;
+  --color-green-800: #99e2bc;
+  --color-green-700: #6cd29f;
+  --color-green-600: #49c488;
+  --color-green-500: #3ADF76;
+  --color-green-400: #2db25e;
+  --color-green-300: #218c49;
+  --color-green-200: #166935;
+  --color-green-100: #0d4622;
 }
 
 :root {
-  --brand-green: #006633;
-  --glass-bg: rgba(17, 24, 39, 0.7);
-  --glass-border: rgba(31, 41, 55, 0.5);
+  --brand-green: #3ADF76;
+  --glass-bg: rgba(245, 239, 235, 0.7); /* light glass effect */
+  --glass-border: rgba(210, 205, 195, 0.5);
 }
 
 body {
@@ -77,11 +114,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
+  background: #D0C9BA; /* color-gray-700 mapped in light theme */
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #B7AF9F; /* color-gray-600 */
 }
-

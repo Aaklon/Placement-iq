@@ -82,7 +82,7 @@ export default function CompanyCard({ company, type = 'ready' }) {
       {type === 'stretch' && company.missingSkills && company.missingSkills.length > 0 && (
         <ul className="mt-4">
           {company.missingSkills.map((skill, idx) => (
-            <li key={idx} className="text-sm text-gray-700 underline list-disc ml-4">
+            <li key={idx} className="text-sm text-blue-600 underline list-disc ml-4">
               {skill}
             </li>
           ))}

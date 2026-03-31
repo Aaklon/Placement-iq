@@ -12,6 +12,7 @@
     "@elevenlabs/react": "^1.0.0",
     "@google/generative-ai": "^0.24.1",
     "@supabase/ssr": "^0.9.0",
+    "pdf-parse": "^1.1.1",
     "@supabase/supabase-js": "^2.100.1",
     "framer-motion": "^12.38.0",
     "groq-sdk": "^1.1.2",

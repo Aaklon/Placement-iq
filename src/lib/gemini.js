@@ -43,9 +43,8 @@ export function safeParseJSON(text) {
   }
 }
 
-// --- 4. EXPORTED FUNCTIONS ---
 
-// READ PDF: Uses Gemini because Groq cannot read PDFs
+// READ PDF
 export async function parseProfileFromPDF(base64PDF) {
   const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" }); // Or gemini-1.5-flash
   
@@ -76,7 +75,7 @@ export async function parseProfileFromPDF(base64PDF) {
   return safeParseJSON(result.response.text());
 }
 
-// GAP ANALYSIS: Uses Groq for speed and reasoning
+// GAP ANALYSIS
 export async function analyzeProfile(studentProfile, companies) {
   const slimCompanies = companies.map(c => ({
     name: c.name,

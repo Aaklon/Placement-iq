@@ -20,7 +20,7 @@ async function generateWithGroq(prompt) {
     model: "llama-3.3-70b-versatile",
     messages: [{ role: "user", content: prompt }],
     max_tokens: 4000, 
-    temperature: 0.1,
+    temperature: 0.3,
     response_format: { type: "json_object" } 
   });
   return response.choices[0].message.content;
